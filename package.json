@@ -1,5 +1,5 @@
 {
-  "name": "ts2",
+  "name": "y",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/m-yal/ts2.git"
   },
-  "author": "Maksym Yalovitsa",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/m-yal/ts2/issues"
