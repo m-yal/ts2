@@ -62,7 +62,7 @@ export default function summ(a: A): number {
     return sum;
 }
 
-//TESTING SITUATED IN index.ts!
+//TESTING SITUATED IN index.ts and task3-tests.ts!
 
 // Удачи найти все баги. 
 // Тут может быть проще все с нуля написать, но задача не об этом. 
