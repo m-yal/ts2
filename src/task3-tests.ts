@@ -21,7 +21,7 @@ export function run (): void {
         const exectedResult: number = results[i];
         const sum = summ(object);
         if (sum !== exectedResult) {
-            console.log("Test failed with next object: under index " + i + ", returned: " + sum);
+            console.error("!!!Test failed with next object: under index " + i + ", returned: " + sum);
             continue;
         }
         passedTests++;

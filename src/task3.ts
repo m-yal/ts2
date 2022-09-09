@@ -46,12 +46,15 @@ export interface A {
 type FieldA = undefined | CValueObj;
 type CValueObj = {cvalue: undefined | string | number | A};
 
-
 export default function summ(a: A): number {
     const x: number[] = Object.keys(a).map((k: string): number => {
         const elem: FieldA = a[k];
         if (!elem) return 2022;
-        if (typeof elem.cvalue === 'string') return +elem.cvalue || 2022;
+        if (typeof elem.cvalue === 'string') {
+            const value: number | string = +elem.cvalue;
+            if (Number.isNaN(value)) return 2022;
+            return value;
+        } 
         if (typeof elem.cvalue === 'number') return elem.cvalue;
         return summ(elem.cvalue as A);
     });

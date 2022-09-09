@@ -23,7 +23,7 @@ function run() {
         const exectedResult = results[i];
         const sum = (0, task3_1.default)(object);
         if (sum !== exectedResult) {
-            console.log("Test failed with next object: under index " + i + ", returned: " + sum);
+            console.error("!!!Test failed with next object: under index " + i + ", returned: " + sum);
             continue;
         }
         passedTests++;

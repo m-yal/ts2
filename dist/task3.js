@@ -22,8 +22,12 @@ function summ(a) {
         const elem = a[k];
         if (!elem)
             return 2022;
-        if (typeof elem.cvalue === 'string')
-            return +elem.cvalue || 2022;
+        if (typeof elem.cvalue === 'string') {
+            const value = +elem.cvalue;
+            if (Number.isNaN(value))
+                return 2022;
+            return value;
+        }
         if (typeof elem.cvalue === 'number')
             return elem.cvalue;
         return summ(elem.cvalue);
@@ -35,7 +39,7 @@ function summ(a) {
     return sum;
 }
 exports.default = summ;
-//TESTING SITUATED IN index.ts!
+//TESTING SITUATED IN index.ts and task3-tests.ts!
 // Удачи найти все баги. 
 // Тут может быть проще все с нуля написать, но задача не об этом. 
 // А про то, как находить ошибки не напрягаясь.
