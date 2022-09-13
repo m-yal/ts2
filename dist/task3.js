@@ -18,25 +18,25 @@
 //   то тогда значением будет 2022.
 Object.defineProperty(exports, "__esModule", { value: true });
 function summ(a) {
-    const x = Object.keys(a).map((k) => {
-        const elem = a[k];
+    return Object.keys(a)
+        .map((k) => {
+        let elem = a[k];
         if (!elem)
             return 2022;
-        if (typeof elem.cvalue === 'string') {
-            const value = +elem.cvalue;
+        let nonNullableElem = elem;
+        if (typeof nonNullableElem.cvalue === 'string') {
+            const value = +nonNullableElem.cvalue;
             if (Number.isNaN(value))
                 return 2022;
             return value;
         }
-        if (typeof elem.cvalue === 'number')
-            return elem.cvalue;
-        return summ(elem.cvalue);
-    });
-    let sum = 0;
-    for (let i = 0; i < x.length; i++) {
-        sum += x[i];
-    }
-    return sum;
+        if (typeof nonNullableElem.cvalue === 'number')
+            return nonNullableElem.cvalue;
+        if (!nonNullableElem.cvalue)
+            return 2022;
+        return summ(nonNullableElem.cvalue);
+    })
+        .reduce((partialSum, a) => partialSum + a, 0);
 }
 exports.default = summ;
 //TESTING SITUATED IN index.ts and task3-tests.ts!

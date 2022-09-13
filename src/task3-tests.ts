@@ -19,7 +19,7 @@ export function run (): void {
     for (let i = 0; i < objects.length; i++) {
         const object: A = objects[i];
         const exectedResult: number = results[i];
-        const sum = summ(object);
+        const sum: number = summ(object);
         if (sum !== exectedResult) {
             console.error("!!!Test failed with next object: under index " + i + ", returned: " + sum);
             continue;

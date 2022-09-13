@@ -46,23 +46,22 @@ export interface A {
 type FieldA = undefined | CValueObj;
 type CValueObj = {cvalue: undefined | string | number | A};
 
-export default function summ(a: A): number {
-    const x: number[] = Object.keys(a).map((k: string): number => {
-        const elem: FieldA = a[k];
-        if (!elem) return 2022;
-        if (typeof elem.cvalue === 'string') {
-            const value: number | string = +elem.cvalue;
-            if (Number.isNaN(value)) return 2022;
-            return value;
-        } 
-        if (typeof elem.cvalue === 'number') return elem.cvalue;
-        return summ(elem.cvalue as A);
-    });
-    let sum: number = 0;
-    for (let i = 0; i < x.length; i++) {
-        sum += x[i];
-    }
-    return sum;
+export default function summ<T extends A>(a: T): number {
+    return Object.keys(a)
+        .map((k: string): number => {
+            let elem: FieldA = a[k];
+            if (!elem) return 2022;
+            let nonNullableElem: NonNullable<FieldA> = elem;
+            if (typeof nonNullableElem.cvalue === 'string') {
+                const value: number = +nonNullableElem.cvalue;
+                if (Number.isNaN(value)) return 2022;
+                return value;
+            } 
+            if (typeof nonNullableElem.cvalue === 'number') return nonNullableElem.cvalue;
+            if (!nonNullableElem.cvalue) return 2022;
+            return summ(nonNullableElem.cvalue);
+        })
+        .reduce((partialSum, a) => partialSum + a, 0);
 }
 
 //TESTING SITUATED IN index.ts and task3-tests.ts!
